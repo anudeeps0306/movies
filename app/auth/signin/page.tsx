@@ -13,12 +13,10 @@ interface Data {
   password: string;
 }
 
-interface SigninProps {
-  onLogin: (data: Data) => void;
-}
 
 
-export default function Signin({ onLogin }: SigninProps) {
+
+export default function Signin() {
   const [data, setData] = useState<Data>({
     email: "",
     password: ""

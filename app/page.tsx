@@ -1,8 +1,6 @@
 'use client';
 
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { increment } from "./GlobalRedux/features/auth/authSlice";
 import { useAppSelector } from '../redux/store';
 
 export default function Home() {
