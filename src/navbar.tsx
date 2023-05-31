@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useAppDispatch, useAppSelector } from '../redux/store';
 import { setAuthInfo, removeAuthInfo } from '../redux/features/authSlice';
 import { getDetails } from '@/api/authentication';
@@ -15,13 +14,13 @@ const Navbar: React.FC = () => {
       if (token) {
         const item = token;
         const response = await getDetails(item);
-        const required_response = {
+        const required_responce = {
           email: response.user.email,
           password: response.user.password,
           name: response.user.name,
           profilePic: response.user.profilePic
         };
-        dispatch(setAuthInfo(required_response));
+        dispatch(setAuthInfo(required_responce));
       }
     };
     setInformation();
@@ -72,19 +71,13 @@ const Navbar: React.FC = () => {
           />
         </button>
         {showOptions && ( // Display the options div if showOptions is true
-          <div className="absolute top-12 right-0 bg-white border border-gray-200 rounded shadow">
+          <div>
             {authInfo.email ? ( // Check if authInfo.email exists
-              <button className="block px-4 py-2" onClick={handleLogout}>
-                Logout
-              </button>
+              <button onClick={handleLogout}>Logout</button>
             ) : (
               <>
-                <Link href="/auth/signin">
-                  <a className="block px-4 py-2">Sign In</a>
-                </Link>
-                <Link href="/auth/signup">
-                  <a className="block px-4 py-2">Sign Up</a>
-                </Link>
+                <button>Sign In</button>
+                <button>Sign Up</button>
               </>
             )}
           </div>
