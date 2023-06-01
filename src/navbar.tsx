@@ -7,6 +7,8 @@ import { getDetails } from '@/api/authentication';
 const Navbar: React.FC = () => {
   const dispatch = useAppDispatch();
   const [showOptions, setShowOptions] = useState(false); // State variable for showing/hiding options div
+  const hello = "hello";
+  const hell2 = "hello2";
 
   useEffect(() => {
     const token = localStorage.getItem('token');
