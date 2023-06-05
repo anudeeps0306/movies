@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setAuthInfo, removeAuthInfo } from '../redux/features/authSlice';
 import { getDetails } from '../api/authentication';
 import Link from 'next/link';
+import { RootState } from '@/redux/store';
 
 const Navbar: React.FC = () => {
   const dispatch = useDispatch();

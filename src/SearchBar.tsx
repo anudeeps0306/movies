@@ -2,18 +2,20 @@ import React, { useState } from 'react';
 import { useAppSelector } from '../redux/store';
 import { searchMovies } from '../api/movies';
 import MovieCard from './Moviecardind';
+import data from './data.json'
 
 interface Movie {
   id: number;
   title: string;
   release_date: string;
   overview: string;
-  // Add more fields as needed
+  original_title: string;
 }
 
 const SearchBar = () => {
     const [query, setQuery] = useState('');
     const [movies, setMovies] = useState<Movie[]>([]);
+    const [arraymovies, setArrayMovies] = useState<Movie[]>([]);
     const [page, setPage] = useState(1); // Track current page
     const [totalPages, setTotalPages] = useState(0); // Track total number of pages
   
@@ -22,10 +24,13 @@ const SearchBar = () => {
     const handleSearch = async (event: React.FormEvent) => {
       event.preventDefault();
       try {
-        const searchResults = await searchMovies(query);
-        setMovies(searchResults.results);
-        setTotalPages(searchResults.total_pages);
-        setPage(1); // Reset page to 1 after each search
+        // const searchResults = await searchMovies(query);
+        const searchResults = data;
+        setArrayMovies(data);
+        // setMovies(searchResults.results);
+        // setTotalPages(searchResults.total_pages);
+        console.log(data);
+        setPage(1); 
       } catch (error) {
         console.error('Error searching movies:', error);
         setMovies([]);
@@ -65,11 +70,17 @@ const SearchBar = () => {
             </button>
           </form>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-          {/* {movies.map(movie => (
+        {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          {arraymovies.map(movie => (
             <MovieCard key={movie.id} movie={movie} />
-          ))} */}
+          ))}x  
+        </div> */}
+        <div className="flex flex-col" style={{ maxHeight: "500px", overflowY: "scroll" }}>
+          {arraymovies.map((movie) => (
+            <MovieCard key={movie.id} movie={movie} />
+          ))}
         </div>
+
         <div className="flex justify-center mt-4">
           <button
             className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600"

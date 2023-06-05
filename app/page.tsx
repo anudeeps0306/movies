@@ -12,7 +12,7 @@ export default function Home() {
     <div>
       <Welcome info={authInfo}/>
       <SearchBar/>
-     
+      
 
     </div>
   );
