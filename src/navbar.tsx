@@ -6,8 +6,15 @@ import Link from 'next/link';
 import { RootState } from '@/redux/store';
 
 const Navbar: React.FC = () => {
+
   const dispatch = useDispatch();
   const [showOptions, setShowOptions] = useState(false);
+
+  const dispatch = useAppDispatch();
+  const [showOptions, setShowOptions] = useState(false); // State variable for showing/hiding options div
+  const hello = "hello";
+  const hell2 = "hello2";
+
 
   useEffect(() => {
     const token = localStorage.getItem('token');
