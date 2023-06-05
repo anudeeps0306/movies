@@ -2,6 +2,10 @@
 
 import React,{useState} from "react";
 import { useAppSelector } from '../redux/store';
+
+import Welcome from '../src/welcome';
+import SearchBar from "@/src/SearchBar";
+
 import { searchMovies } from '../api/movieApi';
 
 interface Movie {
@@ -11,6 +15,7 @@ interface Movie {
   overview: string;
 
 }
+
 
 export default function Home() {
   const [query, setQuery] = useState('');
@@ -31,6 +36,11 @@ export default function Home() {
 
   return (
     <div>
+      <Welcome info={authInfo}/>
+      <SearchBar/>
+      
+
+
       <h1 className="text-3xl font-bold underline">Hello world!</h1>
       {authInfo && <h1 className="text-3xl font-bold underline">{authInfo.name}</h1>}
 
@@ -48,6 +58,7 @@ export default function Home() {
           </div>
         ))}
       </div>
+
     </div>
   );
 }
