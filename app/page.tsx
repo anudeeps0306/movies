@@ -38,27 +38,6 @@ export default function Home() {
     <div>
       <Welcome info={authInfo}/>
       <SearchBar/>
-      
-
-
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
-      {authInfo && <h1 className="text-3xl font-bold underline">{authInfo.name}</h1>}
-
-      <div>
-        <input type="text" value={query} onChange={(e) => setQuery(e.target.value)} />
-        <button onClick={handleSearch}>Search</button>
-      </div>
-
-      <div>
-        {movies.map((movie) => (
-          <div key={movie.id}>
-            <h2>{movie.title}</h2>
-            <p>{movie.release_date}</p>
-            <p>{movie.overview}</p>
-          </div>
-        ))}
-      </div>
-
     </div>
   );
 }
