@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "../../exp"
+		},
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../movies-backend"
+		}
+	],
+	"settings": {}
+}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAppSelector } from '../redux/store';
-import { searchMovies } from '../api/movies';
+import { searchMovies } from '../api/movieApi';
 import MovieCard from './Moviecardind';
 import data from './data.json'
 
@@ -24,17 +24,14 @@ const SearchBar = () => {
     const handleSearch = async (event: React.FormEvent) => {
       event.preventDefault();
       try {
-       
-        const searchResults = data;
-        setArrayMovies(data);
+        console.log(query);
+        const searchResults = await searchMovies(query);
+        // const searchResults = data;
+        setArrayMovies(searchResults);
   
-        console.log(data);
-        setPage(1); 
+        console.log(searchResults);
       } catch (error) {
         console.error('Error searching movies:', error);
-        setMovies([]);
-        setTotalPages(0);
-        setPage(1);
       }
     };
   
@@ -42,7 +39,7 @@ const SearchBar = () => {
   
     return (
       <div className="flex flex-col items-center justify-center mt-10">
-        <div className="flex w-full max-w-sm items-center space-x-2 mb-4">
+        <div className="flex w-full max-w-sm items-center space-x-">
           <input
             type="text"
             placeholder="Movies"
@@ -60,7 +57,7 @@ const SearchBar = () => {
           </form>
         </div>
         
-        <div className="flex flex-col" style={{ maxHeight: "500px", overflowY: "scroll" }}>
+        <div className="flex flex-col" style={{ maxHeight: "350px", overflowY: "scroll" }}>
           {arraymovies.map((movie) => (
             <MovieCard key={movie.id} movie={movie} />
           ))}
