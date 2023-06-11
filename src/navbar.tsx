@@ -33,6 +33,7 @@ const Navbar: React.FC = () => {
   const authInfo = useSelector((state: RootState) => state.auth.authInfo);
 
   const handleClick = () => {
+    console.log("hello");
     setShowOptions(!showOptions);
   };
 
@@ -111,6 +112,7 @@ const Navbar: React.FC = () => {
                   <button
                     type="button"
                     className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                    onClick={handleClick}
                   >
                     Login in
                   </button>

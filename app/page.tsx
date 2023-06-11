@@ -2,11 +2,10 @@
 
 import React,{useState} from "react";
 import { useAppSelector } from '../redux/store';
-
 import Welcome from '../src/welcome';
 import SearchBar from "@/src/SearchBar";
-
 import { searchMovies } from '../api/movieApi';
+import PopularMovies from "@/src/PopularMovies";
 
 interface Movie {
   id: number;
@@ -38,6 +37,7 @@ export default function Home() {
     <div>
       <Welcome info={authInfo}/>
       <SearchBar/>
+      <PopularMovies/>
     </div>
   );
 }
