@@ -5,7 +5,7 @@ import { useAppSelector } from '../redux/store';
 import Welcome from '../src/welcome';
 import SearchBar from "@/src/SearchBar";
 import { searchMovies } from '../api/movieApi';
-import PopularMovies from "@/src/PopularMovies";
+import PopularMovies from "@/src/popularmovies/PopularMovies";
 
 interface Movie {
   id: number;
