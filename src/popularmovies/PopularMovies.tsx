@@ -1,7 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Skeleton from './Skeleton';
-import { fetchMovies } from '../../api/movieApi';
+import { fetchMovies, getSingleMovie } from '../../api/movieApi';
 import MovieCard from '../movieCard/MovieCard';
+import fullMovieInfo from '../fullmovieinfo/fullMovieInfo';
+import Link from 'next/link';
 
 const PopularMovies: React.FC = () => {
   const [movies, setMovies] = useState<any[]>([]);
@@ -33,6 +35,15 @@ const PopularMovies: React.FC = () => {
     }
   };
 
+  const handleGetMovie = async () => {
+    try {
+      const data = await getSingleMovie("385687");
+      console.log(data);
+    } catch (error) {
+      console.error('Error fetching movies:', error);
+    }
+  };
+
   useEffect(() => {
     getListOfMovies();
   }, []);
@@ -42,6 +53,7 @@ const PopularMovies: React.FC = () => {
   };
 
   return (
+    <>
     <div>
       <div className='flex flex-row justify-between'>
   <h1 className='flex'>Popular Movies</h1>
@@ -112,7 +124,9 @@ const PopularMovies: React.FC = () => {
           }}
         >
             {movies.map((movie: any) => (
-              <MovieCard key={movie.id} movie={movie} />
+               <Link href={`/fullmovieinfo/${movie.id}`} key={movie.id}>
+                <MovieCard movie={movie} />
+              </Link>
             ))}
 
             </div>
@@ -124,7 +138,9 @@ const PopularMovies: React.FC = () => {
           }
         `}</style>
       </div>
+      <button onClick={handleGetMovie}>Get</button>
     </div>
+    </>
   );
 };
 

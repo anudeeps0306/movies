@@ -16,9 +16,8 @@ export const searchMovies = async (query : string) => {
 
 export const fetchMovies = async (currentPage: any) => {
   try {
-    const apiKey = '551ff69fc7ffe6c4365e735d758cd550'; // Replace with your actual API key
     const response = await fetch(
-      `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&page=${currentPage}`
+      `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&page=${currentPage}`
     );
 
     const data = await response.json();
@@ -26,6 +25,20 @@ export const fetchMovies = async (currentPage: any) => {
     return data;
 
   } catch (error) {
+    console.error('Error fetching movies:', error);
+    return [];
+  }
+}
+
+export const getSingleMovie = async (id: any) => {
+  try{
+    const response = await fetch(
+      `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`
+    );
+    const data = await response.json();
+    return data;
+  }
+  catch (error) {
     console.error('Error fetching movies:', error);
     return [];
   }
