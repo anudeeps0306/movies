@@ -10,16 +10,19 @@ interface Movie {
 
 interface MovieCardProps {
   movie: Movie;
-  onClick: () => void; // Click event handler
+  onClick: () => void;
 }
 
 const MovieCard: React.FC<MovieCardProps> = ({ movie, onClick }) => {
   return (
     <button onClick={onClick}>
-      <div className="flex flex-row items-center justify-center px-6 py-4 gap-2 w-auto">
-        <div className="flex font-bold text-m mb-2">{movie.original_title}</div>
-        <p className="flex flex-end justify-end items-end text-gray-700 text-base">{movie.release_date}</p>
-      </div>
+     <div className="flex flex-row items-center justify-center px-4 py-2 gap-1 w-auto">
+      <img className="w-6 h-6 mr-2" src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.original_title} />
+      <div className="flex font-bold text-xs mb-1">{movie.original_title}</div>
+      <p className="flex flex-end justify-end items-end text-gray-700 text-sm">{movie.release_date}</p>
+    </div>
+
+
     </button>
   );
 };
